@@ -4,7 +4,7 @@
 */
 
 window.SITE = {
-  linkedin: "https://www.linkedin.com/in/YOUR-LINKEDIN-HANDLE",
+  linkedin: "www.linkedin.com/in/dhwani-badheka",
 
   // Photos from the summit and other events. Add or remove lines freely.
   // Put the image files in the images/events folder.

@@ -215,6 +215,16 @@
   </section>
 </main>
 
+<dialog id="viewer" class="viewer" aria-label="Project slides">
+  <button class="close" type="button" aria-label="Close">Close</button>
+  <img src="" alt="">
+  <div class="viewer-bar">
+    <button class="prev" type="button" aria-label="Previous slide">Previous</button>
+    <span class="viewer-cap"></span>
+    <button class="next" type="button" aria-label="Next slide">Next</button>
+  </div>
+</dialog>
+
 <footer class="foot">
   <div class="wrap">Made in New York</div>
 </footer>
@@ -231,20 +241,44 @@
   var plist = document.getElementById("project-list");
   var projects = (S.projects || []).filter(function (p) { return p && p.title; });
   if (!projects.length) document.getElementById("projects").remove();
-  projects.forEach(function (p) {
+  projects.forEach(function (p, i) {
+    var slides = p.slides || (p.image ? [p.image] : []);
     var el = document.createElement("article");
     el.className = "project";
     var subject = encodeURIComponent("Full deck: " + p.title);
-    el.innerHTML = (p.image ? '<div class="project-img"><img src="' + esc(p.image) + '" alt="Slide from ' + esc(p.title) + '" loading="lazy" onerror="imgTry(this, 1)"></div>' : '') +
+    var count = slides.length > 1 ? '<span class="project-count">' + slides.length + ' slides</span>' : '';
+    el.innerHTML = (slides.length ? '<button class="project-img" type="button" data-p="' + i + '" aria-label="View slides from ' + esc(p.title) + '"><img src="' + esc(slides[0]) + '" alt="" loading="lazy" onerror="imgTry(this, 1)">' + count + '</button>' : '') +
       '<div class="project-text">' +
         '<h3>' + esc(p.title) + '</h3>' +
         '<p class="project-meta">' + esc(p.course) + (p.team ? '<br>' + esc(p.team) : '') + '</p>' +
         (p.summary ? '<p>' + esc(p.summary) + '</p>' : '') +
         (p.role ? '<p class="project-role"><strong>My part:</strong> ' + esc(p.role) + '</p>' : '') +
-        '<a class="project-ask" href="mailto:dhwanibadheka@gmail.com?subject=' + subject + '">Ask for the full deck</a>' +
+        '<p class="project-links">' + (slides.length ? '<button class="linklike" type="button" data-p="' + i + '">View slides</button>' : '') +
+        '<a href="mailto:dhwanibadheka@gmail.com?subject=' + subject + '">Ask for the full deck</a></p>' +
       '</div>';
     plist.appendChild(el);
   });
+
+  /* Slide viewer: opens on top of the page, no separate page */
+  var box = document.getElementById("viewer"), vImg = box.querySelector("img"), vCap = box.querySelector(".viewer-cap");
+  var cur = { p: 0, s: 0 };
+  function show() {
+    var p = projects[cur.p], slides = p.slides || [p.image];
+    vImg.src = slides[cur.s];
+    vImg.alt = "Slide " + (cur.s + 1) + " from " + p.title;
+    vCap.textContent = p.title + "  (" + (cur.s + 1) + " of " + slides.length + ")";
+    box.querySelector(".prev").hidden = box.querySelector(".next").hidden = slides.length < 2;
+  }
+  function step(d) { var n = (projects[cur.p].slides || [1]).length; cur.s = (cur.s + d + n) % n; show(); }
+  plist.addEventListener("click", function (e) {
+    var t = e.target.closest("[data-p]"); if (!t) return;
+    cur = { p: +t.dataset.p, s: 0 }; show(); box.showModal();
+  });
+  box.querySelector(".prev").onclick = function () { step(-1); };
+  box.querySelector(".next").onclick = function () { step(1); };
+  box.querySelector(".close").onclick = function () { box.close(); };
+  box.addEventListener("click", function (e) { if (e.target === box) box.close(); });
+  box.addEventListener("keydown", function (e) { if (e.key === "ArrowLeft") step(-1); if (e.key === "ArrowRight") step(1); });
 
   var events = (S.events || []).filter(function (e) { return e && e.name; });
   if (!events.length) document.getElementById("events").remove();

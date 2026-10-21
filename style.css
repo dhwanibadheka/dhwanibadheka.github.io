@@ -81,13 +81,29 @@ h2 { font-family: var(--serif); font-weight: 400; font-size: clamp(36px, 4.6vw, 
 #projects { padding-top: 0; }
 .projects { display: grid; gap: clamp(48px, 6vw, 80px); border-top: 1px solid var(--ink); padding-top: clamp(36px, 4vw, 52px); }
 .project { display: grid; grid-template-columns: 1.3fr 1fr; gap: clamp(28px, 4vw, 56px); align-items: start; }
-.project-img { aspect-ratio: 16 / 9; border-radius: 4px; overflow: hidden; background: #E7E3E8; border: 1px solid var(--rule); }
+.project-img { position: relative; display: block; width: 100%; padding: 0; font: inherit; cursor: zoom-in; aspect-ratio: 16 / 9; border-radius: 4px; overflow: hidden; background: #E7E3E8; border: 1px solid var(--rule); }
+.project-img img { transition: transform 0.3s ease; }
+.project-img:hover img { transform: scale(1.02); }
+.project-count { position: absolute; right: 10px; bottom: 10px; background: rgba(30, 26, 36, 0.82); color: #fff; font-size: 13px; padding: 4px 10px; border-radius: 3px; }
 .project-img img { width: 100%; height: 100%; object-fit: cover; }
 .project-text h3 { font-family: var(--serif); font-weight: 400; font-size: clamp(26px, 2.6vw, 32px); line-height: 1.12; letter-spacing: -0.015em; margin: 0 0 8px; }
 .project-meta { color: var(--muted); font-size: 14px; margin: 0 0 16px; line-height: 1.5; }
 .project-text p { margin: 0 0 14px; font-size: 16px; color: #3A3440; }
 .project-role strong { color: var(--plum); font-weight: 600; }
-.project-ask { display: inline-block; margin-top: 4px; font-size: 15px; font-weight: 500; }
+.project-links { display: flex; flex-wrap: wrap; gap: 8px 24px; margin-top: 4px; }
+.project-links a, .linklike { font-size: 15px; font-weight: 500; }
+.linklike { background: none; border: 0; padding: 0; font-family: inherit; color: inherit; text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 3px; cursor: pointer; }
+.linklike:hover { color: var(--plum); }
+
+/* Slide viewer */
+.viewer { width: min(1200px, 94vw); max-height: 94vh; padding: 0; border: 0; border-radius: 6px; background: var(--band); color: var(--band-text); }
+.viewer::backdrop { background: rgba(20, 16, 24, 0.82); }
+.viewer img { display: block; width: 100%; max-height: calc(94vh - 110px); object-fit: contain; background: #000; }
+.viewer-bar { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 14px 18px; }
+.viewer-cap { font-size: 14px; color: var(--band-muted); text-align: center; flex: 1; }
+.viewer button { background: none; border: 1px solid var(--band-rule); color: var(--band-text); font: inherit; font-size: 14px; padding: 8px 14px; border-radius: 4px; cursor: pointer; }
+.viewer button:hover { border-color: var(--band-muted); }
+.viewer .close { display: block; margin: 10px 12px 10px auto; }
 
 /* In the room */
 .talks { background: var(--band); color: var(--band-text); }

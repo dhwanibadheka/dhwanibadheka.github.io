@@ -23,7 +23,8 @@ window.SITE = {
     // { name: "Event name", place: "New York", date: "March 2026", note: "What you did there", banner: "banner-name.jpg" },
   ],
 
-  // CLASS PROJECTS. image: upload next to index.html with this exact file name.
+  // CLASS PROJECTS. slides: images uploaded next to index.html. The first one shows on the page;
+  // clicking it opens all of them full size. Add more file names to show more slides.
   projects: [
     {
       title: "Patek Philippe: The Fifth Hour",
@@ -31,7 +32,7 @@ window.SITE = {
       team: "Team project, 2 people",
       summary: "What if the world's most patient watchmaker made whiskey? A 25-year single malt released as five collectible bottles, each honoring one of Patek's decorative crafts, unveiled at a private evening in the Patek Philippe Museum and priced like an heirloom. Luxury that's whispered, not shouted.",
       role: "Creative strategy and presentation design.",
-      image: "project-patek.jpg"
+      slides: ["project-patek.jpg", "project-patek-2.jpg"]
     },
     {
       title: "Nike: Running Behind",
@@ -39,7 +40,7 @@ window.SITE = {
       team: "Team project, 4 people",
       summary: "Why are runners drifting away from Nike, and how do you win them back? Customer data was clustered into segments and mapped by zip code to find the highest-margin cities, then turned into personas with a campaign for each, from the budget-conscious young athlete to the prestige loyalist.",
       role: "Turned the team's segmentation analysis into insights, personas, and campaign ideas.",
-      image: "project-nike.jpg"
+      slides: ["project-nike.jpg", "project-nike-2.jpg"]
     },
     {
       title: "Netflix: Now Streaming",
@@ -47,7 +48,7 @@ window.SITE = {
       team: "Team project, 4 people",
       summary: "A 12-point audit of Netflix's mobile customer journey, from A/B-tested artwork and personalized notifications to opt-in rules and loyalty, ending with three ideas for what comes next, including an immersive Netflixverse.",
       role: "Creative strategy and presentation design.",
-      image: "project-netflix.jpg"
+      slides: ["project-netflix.jpg", "project-netflix-2.jpg"]
     }
   ],
 

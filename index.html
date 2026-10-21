@@ -38,7 +38,7 @@
           <a class="btn btn-primary" href="mailto:dhwanibadheka@gmail.com">Email me</a>
           <a class="btn btn-ghost" href="DhwaniBadheka_Resume.pdf" target="_blank" rel="noopener">View resume</a>
         </div>
-        <p class="auth"><strong>Authorized to work in the U.S.</strong> on F-1 OPT, eligible for the 24-month STEM OPT extension. No visa sponsorship needed to start.</p>
+        <p class="auth"><strong>Authorized to work in the U.S.</strong> on F-1 OPT, eligible for the 24-month STEM OPT extension.</p>
       </div>
       <div class="portrait-wrap">
         <div class="portrait">
@@ -53,7 +53,7 @@
     <div class="wrap">
       <p class="brands-label">Brands and organizations I've worked with</p>
       <ul>
-        <li>Milky Mist</li><li>Amul</li><li>Saatchi &amp; Saatchi</li><li>International Advertising Association</li><li>The Fragrance Foundation</li><li>Victoria's Secret</li><li>MANE</li><li>Fordham University</li><li>Valoi.ai</li>
+        <li>Milky Mist</li><li>Amul</li><li>Saatchi &amp; Saatchi</li><li>International Advertising Association North America</li><li>The Fragrance Foundation</li><li>Victoria's Secret</li><li>MANE</li><li>Fordham University</li><li>Valoi.ai</li>
       </ul>
     </div>
   </div>
@@ -85,7 +85,7 @@
           <div class="figure">4</div>
           <div>
             <h3>C-suite industry events</h3>
-            <p class="where">International Advertising Association, New York</p>
+            <p class="where">International Advertising Association North America, New York</p>
           </div>
           <p class="how">Coordinated four events with 100+ C-suite attendees each, from agenda and speakers to vendors and on-site execution.</p>
         </li>
@@ -93,7 +93,7 @@
           <div class="figure">25%</div>
           <div>
             <h3>LinkedIn audience growth</h3>
-            <p class="where">International Advertising Association, New York</p>
+            <p class="where">International Advertising Association North America, New York</p>
           </div>
           <p class="how">Rebuilt the organic LinkedIn strategy, growing net new subscribers by 25%.</p>
         </li>
@@ -113,13 +113,16 @@
     <div class="wrap">
       <h2 class="talks-title">In the room with marketing leaders</h2>
       <div class="talks-body">
-        <p class="statement">At the IAA Global B2B Brand Summit in New York, I interviewed C-suite marketing leaders on camera about brand, growth, and where B2B marketing is headed.</p>
+        <p class="statement">At International Advertising Association North America, I help run the events where senior marketers meet. At the IAA Global B2B Brand Summit in New York, I interviewed C-suite marketing leaders on camera about brand, growth, and where B2B marketing is headed.</p>
         <dl class="facts">
-          <div><dt>The event</dt><dd>IAA Global B2B Brand Summit, New York</dd></div>
           <div><dt>Who I spoke with</dt><dd>CMOs and senior marketing leaders from New York-based companies</dd></div>
           <div><dt>What I did</dt><dd>Researched each guest, wrote the questions, and led short on-camera conversations</dd></div>
           <div><dt>Around it</dt><dd>Four IAA events for 100+ C-suite attendees each, coordinated from agenda to on-site execution</dd></div>
         </dl>
+      </div>
+      <div class="events" id="events">
+        <h3>Events I've worked on</h3>
+        <ul id="event-list"></ul>
       </div>
       <div class="strip" id="strip"></div>
     </div>
@@ -138,9 +141,9 @@
           <p>Helping an early-stage AI startup get ready for launch: user acquisition, social media, and B2B outreach built on filtered, segmented prospect data.</p>
         </article>
         <article>
-          <h3>International Advertising Association</h3>
+          <h3>International Advertising Association North America</h3>
           <p class="role">Marketing Intern, since May 2025</p>
-          <p>Running events for senior marketers, email and LinkedIn programs, and the Rising Marketing Leaders initiative for early-career talent.</p>
+          <p>Running events for senior marketers, from logistics and outreach to live social coverage. I also manage email and LinkedIn programs, monitor the CRM and website, and help lead the Rising Marketing Leaders initiative for early-career talent.</p>
         </article>
         <article>
           <h3>Fordham University</h3>
@@ -159,7 +162,7 @@
       </div>
       <ol class="timeline" reversed>
         <li><span class="when">Oct 2026 to now</span><span><strong>Marketing Intern</strong>, <span class="org">Valoi.ai</span></span></li>
-        <li><span class="when">May 2025 to now</span><span><strong>Marketing Intern</strong>, <span class="org">International Advertising Association, North America</span></span></li>
+        <li><span class="when">May 2025 to now</span><span><strong>Marketing Intern</strong>, <span class="org">International Advertising Association North America</span></span></li>
         <li><span class="when">May to Dec 2025</span><span><strong>Graduate Assistant</strong>, <span class="org">Gabelli School of Business, Fordham University</span></span></li>
         <li><span class="when">Jul 2020 to Jul 2024</span><span><strong>Senior Copywriter, Marketing &amp; Content Strategy</strong>, <span class="org">Quokka Creatives</span></span></li>
         <li><span class="when">Oct 2019 to Jul 2020</span><span><strong>Junior Copywriter</strong>, <span class="org">Triton Communications</span></span></li>
@@ -200,12 +203,25 @@
   var li = document.getElementById("linkedin");
   if (S.linkedin && S.linkedin.indexOf("YOUR-LINKEDIN") === -1) li.href = S.linkedin; else li.remove();
 
+  var events = (S.events || []).filter(function (e) { return e && e.name; });
+  if (!events.length) document.getElementById("events").remove();
+  var list = document.getElementById("event-list");
+  events.forEach(function (e) {
+    var item = document.createElement("li");
+    var meta = [e.place, e.date].filter(Boolean).join(", ");
+    item.innerHTML = (e.banner ? '<div class="ev-banner"><img src="' + esc(e.banner) + '" alt="' + esc(e.name) + ' banner" loading="lazy" onerror="this.parentNode.remove()"></div>' : '') +
+      '<span class="ev-name">' + esc(e.name) + '</span>' +
+      (meta ? '<span class="ev-meta">' + esc(meta) + '</span>' : '') +
+      (e.note ? '<span class="ev-note">' + esc(e.note) + '</span>' : '');
+    list.appendChild(item);
+  });
+
   var strip = document.getElementById("strip");
   var photos = S.eventPhotos || [];
   if (!photos.length) strip.remove();
   photos.forEach(function (p) {
     var fig = document.createElement("figure");
-    fig.innerHTML = '<div class="ph"><img src="' + esc(p.src) + '" alt="' + esc(p.caption) + '" loading="lazy" onerror="this.remove()"></div>' +
+    fig.innerHTML = '<div class="ph"><img src="' + esc(p.src) + '" alt="' + esc(p.caption) + '" loading="lazy" onerror="this.parentNode.parentNode.remove()"></div>' +
       (p.caption ? "<figcaption>" + esc(p.caption) + "</figcaption>" : "");
     strip.appendChild(fig);
   });

@@ -23,6 +23,34 @@ window.SITE = {
     // { name: "Event name", place: "New York", date: "March 2026", note: "What you did there", banner: "banner-name.jpg" },
   ],
 
+  // CLASS PROJECTS. image: upload next to index.html with this exact file name.
+  projects: [
+    {
+      title: "Patek Philippe: The Fifth Hour",
+      course: "Luxury Marketing, Fordham University, 2025",
+      team: "Team project, 2 people",
+      summary: "What if the world's most patient watchmaker made whiskey? A 25-year single malt released as five collectible bottles, each honoring one of Patek's decorative crafts, unveiled at a private evening in the Patek Philippe Museum and priced like an heirloom. Luxury that's whispered, not shouted.",
+      role: "Creative strategy and presentation design.",
+      image: "project-patek.jpg"
+    },
+    {
+      title: "Nike: Running Behind",
+      course: "Data-Driven Marketing, Fordham University",
+      team: "Team project, 4 people",
+      summary: "Why are runners drifting away from Nike, and how do you win them back? Customer data was clustered into segments and mapped by zip code to find the highest-margin cities, then turned into personas with a campaign for each, from the budget-conscious young athlete to the prestige loyalist.",
+      role: "Turned the team's segmentation analysis into insights, personas, and campaign ideas.",
+      image: "project-nike.jpg"
+    },
+    {
+      title: "Netflix: Now Streaming",
+      course: "Marketing Tech and Innovation, Fordham University, 2025",
+      team: "Team project, 4 people",
+      summary: "A 12-point audit of Netflix's mobile customer journey, from A/B-tested artwork and personalized notifications to opt-in rules and loyalty, ending with three ideas for what comes next, including an immersive Netflixverse.",
+      role: "Creative strategy and presentation design.",
+      image: "project-netflix.jpg"
+    }
+  ],
+
   // PHOTOS from events. First, upload the image into the images/events folder.
   // Then add a line here with its exact file name. The first photo shows largest.
   // A photo whose file isn't uploaded yet simply won't appear.

@@ -53,7 +53,7 @@ a:hover { color: var(--plum); }
 
 .portrait-wrap { max-width: 360px; width: 100%; justify-self: end; }
 .portrait { position: relative; aspect-ratio: 4 / 5; border-radius: 180px 180px 4px 4px; overflow: hidden; background: #E7E3E8; }
-.portrait img { width: 100%; height: 100%; object-fit: cover; }
+.portrait img { position: relative; z-index: 1; width: 100%; height: 100%; object-fit: cover; object-position: center 25%; }
 .portrait .fallback { position: absolute; inset: 0; display: grid; place-items: center; font-family: var(--serif); font-size: 64px; color: #C3BBC7; }
 
 /* Brands */
@@ -90,11 +90,11 @@ h2 { font-family: var(--serif); font-weight: 400; font-size: clamp(36px, 4.6vw, 
 
 .events { margin-top: clamp(56px, 7vw, 88px); }
 .events h3 { font-family: var(--serif); font-weight: 400; font-size: 28px; color: #fff; margin: 0 0 18px; letter-spacing: -0.015em; }
-.events ul { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(2, 1fr); gap: 36px 32px; }
+.events ul { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(4, 1fr); gap: 36px 24px; }
 .events li { display: flex; flex-direction: column; gap: 4px; border-top: 1px solid var(--band-muted); padding-top: 18px; }
-.ev-banner { aspect-ratio: 16 / 9; background: #1A1420; border-radius: 4px; overflow: hidden; margin-bottom: 14px; }
-.ev-banner img { width: 100%; height: 100%; object-fit: contain; }
-.ev-name { color: #fff; font-family: var(--serif); font-size: 22px; line-height: 1.25; letter-spacing: -0.01em; }
+.ev-banner { aspect-ratio: 4 / 5; background: #1A1420; border-radius: 4px; overflow: hidden; margin-bottom: 14px; }
+.ev-banner img { width: 100%; height: 100%; object-fit: cover; object-position: center 30%; }
+.ev-name { color: #fff; font-family: var(--serif); font-size: 20px; line-height: 1.25; letter-spacing: -0.01em; }
 .ev-meta { color: var(--band-muted); font-size: 14px; }
 .ev-note { color: var(--band-text); font-size: 15px; margin-top: 4px; }
 
@@ -140,12 +140,13 @@ h2 { font-family: var(--serif); font-weight: 400; font-size: clamp(36px, 4.6vw, 
   .now-grid { grid-template-columns: 1fr; gap: 28px; }
   .timeline li { grid-template-columns: 1fr; }
   .skills { grid-template-columns: 1fr; }
-  .events ul { grid-template-columns: 1fr; }
+  .events ul { grid-template-columns: repeat(2, 1fr); gap: 28px 16px; }
   .strip { grid-template-columns: 1fr 1fr; }
   .strip figure:first-child { grid-column: 1 / -1; grid-row: auto; }
   .strip figure:first-child .ph { flex: none; min-height: 0; aspect-ratio: 16 / 10; }
 }
 @media (max-width: 560px) {
+  .ev-name { font-size: 18px; }
   .site-head nav a:nth-child(n+3) { display: none; }
   .facts div { grid-template-columns: 1fr; }
 }

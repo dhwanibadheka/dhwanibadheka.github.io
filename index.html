@@ -7,11 +7,32 @@
   <meta name="description" content="Dhwani Badheka, New York-based marketer: brand storytelling, partnerships, social growth, and C-suite events.">
   <meta property="og:title" content="Dhwani Badheka | Marketing">
   <meta property="og:description" content="Six years turning brand stories into measurable growth. Based in New York.">
-  <meta property="og:image" content="images/headshot.jpg">
+  <meta property="og:image" content="headshot.jpg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,500&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
+  <script>
+    /* If an image isn't found, try common alternatives: the same name in other
+       folders (images/events, images, top level) and other extensions (.jpg, .jpeg, .png). */
+    window.imgTry = function (img, levels) {
+      if (!img._alts) {
+        var src = img.getAttribute("src"), slash = src.lastIndexOf("/");
+        var file = src.slice(slash + 1), dot = file.lastIndexOf(".");
+        var base = dot > 0 ? file.slice(0, dot) : file;
+        var dirs = [src.slice(0, slash + 1), "images/events/", "images/", ""];
+        var exts = [".jpg", ".jpeg", ".png", ".JPG", ".JPEG", ".PNG", ".webp"];
+        var seen = {}, alts = [];
+        dirs.forEach(function (d) { exts.forEach(function (x) {
+          var p = d + base + x; if (p !== src && !seen[p]) { seen[p] = 1; alts.push(p); }
+        }); });
+        img._alts = alts;
+      }
+      if (img._alts.length) { img.src = img._alts.shift(); return; }
+      var el = img; for (var i = 0; i < levels; i++) el = el.parentNode;
+      el.remove();
+    };
+  </script>
 </head>
 <body>
 
@@ -43,7 +64,7 @@
       <div class="portrait-wrap">
         <div class="portrait">
           <span class="fallback" aria-hidden="true">DB</span>
-          <img src="images/headshot.jpg" alt="Portrait of Dhwani Badheka" onerror="this.remove()">
+          <img src="headshot.jpg" alt="Portrait of Dhwani Badheka" onerror="imgTry(this, 0)">
         </div>
       </div>
     </div>
@@ -209,7 +230,7 @@
   events.forEach(function (e) {
     var item = document.createElement("li");
     var meta = [e.place, e.date].filter(Boolean).join(", ");
-    item.innerHTML = (e.banner ? '<div class="ev-banner"><img src="' + esc(e.banner) + '" alt="' + esc(e.name) + ' banner" loading="lazy" onerror="this.parentNode.remove()"></div>' : '') +
+    item.innerHTML = (e.banner ? '<div class="ev-banner"><img src="' + esc(e.banner) + '" alt="' + esc(e.name) + ' banner" loading="lazy" onerror="imgTry(this, 1)"></div>' : '') +
       '<span class="ev-name">' + esc(e.name) + '</span>' +
       (meta ? '<span class="ev-meta">' + esc(meta) + '</span>' : '') +
       (e.note ? '<span class="ev-note">' + esc(e.note) + '</span>' : '');
@@ -221,7 +242,7 @@
   if (!photos.length) strip.remove();
   photos.forEach(function (p) {
     var fig = document.createElement("figure");
-    fig.innerHTML = '<div class="ph"><img src="' + esc(p.src) + '" alt="' + esc(p.caption) + '" loading="lazy" onerror="this.parentNode.parentNode.remove()"></div>' +
+    fig.innerHTML = '<div class="ph"><img src="' + esc(p.src) + '" alt="' + esc(p.caption) + '" loading="lazy" onerror="imgTry(this, 2)"></div>' +
       (p.caption ? "<figcaption>" + esc(p.caption) + "</figcaption>" : "");
     strip.appendChild(fig);
   });

@@ -176,7 +176,7 @@
     <div class="wrap">
       <div class="section-head">
         <h2>Class projects</h2>
-        <p>Team projects from my MS in Marketing Intelligence. Full decks are available on request.</p>
+        <p>Team projects from my MS in Marketing Intelligence. Here's a preview of each; I'm happy to walk you through the rest.</p>
       </div>
       <div class="projects" id="project-list"></div>
     </div>
@@ -252,7 +252,7 @@
     var slides = p.slides || (p.image ? [p.image] : []);
     var el = document.createElement("article");
     el.className = "project";
-    var subject = encodeURIComponent("Full deck: " + p.title);
+    var subject = encodeURIComponent("Your " + p.title + " presentation");
     var count = slides.length > 1 ? '<span class="project-count">' + slides.length + ' slides</span>' : '';
     el.innerHTML = (slides.length ? '<button class="project-img" type="button" data-p="' + i + '" aria-label="View slides from ' + esc(p.title) + '"><img src="' + esc(slides[0]) + '" alt="" loading="lazy" onerror="imgTry(this, 1)">' + count + '</button>' : '') +
       '<div class="project-text">' +
@@ -261,7 +261,7 @@
         (p.summary ? '<p>' + esc(p.summary) + '</p>' : '') +
         (p.role ? '<p class="project-role"><strong>My part:</strong> ' + esc(p.role) + '</p>' : '') +
         '<p class="project-links">' + (slides.length ? '<button class="linklike" type="button" data-p="' + i + '">View slides</button>' : '') +
-        '<a href="mailto:dhwanibadheka@gmail.com?subject=' + subject + '">Ask for the full deck</a></p>' +
+        '<a href="mailto:dhwanibadheka@gmail.com?subject=' + subject + '">Want to see beyond the preview? Let\'s talk</a></p>' +
       '</div>';
     plist.appendChild(el);
   });

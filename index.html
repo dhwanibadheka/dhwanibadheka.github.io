@@ -41,9 +41,9 @@
     <a class="mark" href="#top" aria-label="Back to top">DB</a>
     <nav aria-label="Sections">
       <a href="#work">Work</a>
-      <a href="#projects">Projects</a>
       <a href="#conversations">In the room</a>
       <a href="#now">Now</a>
+      <a href="#projects">Projects</a>
       <a href="#experience">Experience</a>
     </nav>
   </div>
@@ -54,6 +54,9 @@
   <section class="hero">
     <div class="wrap">
       <div>
+        <p class="hello" aria-label="Hello in four languages: Namaste, Hallo, Bonjour, Konnichiwa">
+          <span lang="hi" title="Hindi">Namaste.</span> <span lang="de" title="German">Hallo.</span> <span lang="fr" title="French">Bonjour.</span> <span lang="ja" title="Japanese">Konnichiwa.</span>
+        </p>
         <h1><span>Dhwani</span><span>Badheka</span></h1>
         <p class="lede">I'm a New York marketer who makes brands easier to love and easier to partner with, through content, brand partnerships, and events where the right people actually show up.</p>
         <div class="actions">
@@ -131,16 +134,6 @@
     </div>
   </section>
 
-  <section id="projects">
-    <div class="wrap">
-      <div class="section-head">
-        <h2>Class projects</h2>
-        <p>Team projects from my MS in Marketing Intelligence. Full decks are available on request.</p>
-      </div>
-      <div class="projects" id="project-list"></div>
-    </div>
-  </section>
-
   <section id="conversations" class="talks">
     <div class="wrap">
       <h2 class="talks-title">I interviewed 10+ C&#8209;suite marketing leaders on B2B's breakout moment.</h2>
@@ -179,6 +172,16 @@
     </div>
   </section>
 
+  <section id="projects">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Class projects</h2>
+        <p>Team projects from my MS in Marketing Intelligence. Full decks are available on request.</p>
+      </div>
+      <div class="projects" id="project-list"></div>
+    </div>
+  </section>
+
   <section id="experience">
     <div class="wrap">
       <div class="section-head">
@@ -194,10 +197,12 @@
         <li><span class="when">Feb to May 2019</span><span><strong>Copywriting Trainee</strong>, <span class="org">Saatchi &amp; Saatchi, Publicis</span></span></li>
         <li><span class="when">Dec 2017 to Jun 2018</span><span><strong>Copywriting Trainee</strong>, <span class="org">iScribblers</span></span></li>
       </ol>
+      <h3 class="skills-title">Skills and tools</h3>
       <div class="skills">
         <div><h3>Brand partnerships and events</h3><p>Partner outreach and negotiation, relationship management, end-to-end event production, speaker and vendor logistics</p></div>
         <div><h3>Content and social</h3><p>Content strategy, copywriting, content calendars, LinkedIn and Instagram growth, Mailchimp</p></div>
-        <div><h3>Data and tools</h3><p>Tableau, SQL, SPSS, Excel, Figma, Canva, CRM, ChatGPT, Gemini, Claude</p></div>
+        <div><h3>Data and analytics</h3><p>Tableau, SQL, SPSS, Excel, CRM databases</p></div>
+        <div><h3>Design and AI tools</h3><p>Figma, Canva, PowerPoint, ChatGPT, Gemini, Claude</p></div>
       </div>
     </div>
   </section>
@@ -214,6 +219,8 @@
     </div>
   </section>
 </main>
+
+<p class="toast" id="toast" role="status" aria-live="polite"></p>
 
 <dialog id="viewer" class="viewer" aria-label="Project slides">
   <button class="close" type="button" aria-label="Close">Close</button>
@@ -257,6 +264,16 @@
         '<a href="mailto:dhwanibadheka@gmail.com?subject=' + subject + '">Ask for the full deck</a></p>' +
       '</div>';
     plist.appendChild(el);
+  });
+
+  /* Email links: open the mail app if there is one, and always copy the address */
+  var toast = document.getElementById("toast"), tTimer;
+  document.addEventListener("click", function (e) {
+    var m = e.target.closest('a[href^="mailto:"]'); if (!m) return;
+    var addr = "dhwanibadheka@gmail.com";
+    function say(msg) { toast.textContent = msg; toast.classList.add("on"); clearTimeout(tTimer); tTimer = setTimeout(function () { toast.classList.remove("on"); }, 4500); }
+    if (navigator.clipboard) navigator.clipboard.writeText(addr).then(function () { say("Email address copied: " + addr); }, function () { say("Email me at " + addr); });
+    else say("Email me at " + addr);
   });
 
   /* Slide viewer: opens on top of the page, no separate page */

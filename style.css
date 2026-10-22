@@ -60,8 +60,9 @@ a:hover { color: var(--plum); }
 
 /* Brands */
 .brands { border-block: 1px solid var(--rule); padding: 22px 0; }
-.brands .wrap { display: flex; align-items: baseline; gap: 12px 36px; flex-wrap: wrap; }
-.brands-label { margin: 0; font-size: 14px; color: var(--muted); flex: 0 0 auto; }
+.brands .wrap { display: block; }
+.brands-label { margin: 0 0 12px; font-size: 14px; color: var(--muted); }
+.brands-label em { display: block; font-family: var(--serif); font-size: clamp(19px, 2vw, 23px); color: var(--plum); margin-bottom: 4px; }
 .brands ul { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 6px 28px; }
 .brands li { font-family: var(--serif); font-size: 19px; color: var(--ink); }
 
@@ -179,7 +180,7 @@ h2 { font-family: var(--serif); font-weight: 400; font-size: clamp(36px, 4.6vw, 
 }
 @media (max-width: 560px) {
   .ev-name { font-size: 18px; }
-  .site-head nav a:nth-child(n+3) { display: none; }
+  .site-head nav { gap: 12px; font-size: 13.5px; overflow-x: auto; white-space: nowrap; scrollbar-width: none; }
   .facts div { grid-template-columns: 1fr; }
 }
 @media (prefers-reduced-motion: reduce) {
